@@ -1,0 +1,31 @@
+{
+  "name": "veeva_pres_builder",
+  "version": "0.0.1",
+  "description": "Build system for HTML5 Veeva presentations",
+  "main": "gulpfile.babel.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "gulp --gulpfile ./utils/gulp/index.js",
+    "newslide": "node utils/generator/newSlide.js"
+  },
+  "author": "Ricky Grimaldi",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/register": "^7.10.5",
+    "browser-sync": "^2.26.12",
+    "esm": "^3.2.25",
+    "glob": "^7.1.6",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-compile-handlebars": "^0.6.1",
+    "gulp-hub": "^4.2.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-tap": "^2.0.0",
+    "gulp-terser": "^1.3.2",
+    "node-sass": "^4.14.1",
+    "prompts": "^2.3.2",
+    "require-dir": "^1.2.0"
+  }
+}
