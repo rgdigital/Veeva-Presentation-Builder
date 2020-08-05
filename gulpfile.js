@@ -18,6 +18,7 @@ const css = require('./utils/gulp/css');
 const js = require('./utils/gulp/js');
 const thumbnails = require('./utils/gulp/thumbnails');
 const delivery = require('./utils/gulp/delivery');
+const assets = require('./utils/gulp/assets');
 
 /* 
  * Template tasks
@@ -45,6 +46,11 @@ exports.css = css.default;
  * Generate thumbnails
  */
 exports.thumbnails = thumbnails.default;
+
+/* 
+ * Copy assets
+ */
+exports.assets = assets.default;
 
 /* 
  * Deliver files
