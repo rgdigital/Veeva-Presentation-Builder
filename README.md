@@ -11,9 +11,10 @@
 2. Run `npm install` to install all the project dependancies.
 
 ## TODO
-<!-- - Compile handlebar templates into dist -->
+- Copy assets from src -> dist
 - Zip up individual folders in dist
-- Generate thumbnails for each slide (using puppeteer)
+<!-- - Compile handlebar templates into dist -->
+<!-- - Generate thumbnails for each slide (using puppeteer) -->
 
 ## Project structure
 - **/dist** - This contains the compiled project ready to host on a live server.
@@ -28,6 +29,9 @@ This will prompt for a slide title and create a new slide folder and its files i
 
 #### `gulp` - default task
 This will open a browser window with a preview of the project. All the HTML, CSS, and JS files (apart from libraries) are being watched, so any changes you make will trigger a browser refresh to reflect the changes.
+
+#### `gulp thumbnails` - Generate thumbnails
+This task will run a local server in the background, then take pictures of the slides and place the thumbnails in each slides folder in `/dist`.
 
 <!--
 
@@ -54,6 +58,8 @@ Just add the HTML page in src (in a folder if you like) and it will be copied to
 ## Adding CSS / SCSS
 Custom CSS is written in `src/public/scss`. The entry point SCSS file is `app.scss`. You can change the structure however you like as long as you include any extra .scss files in app.scss.
 
+-->
+
 ## Resources
 - [Veeva CRM docs](https://developer.veevacrm.com/api/)
 - [Veeva Presentation build guide](https://www.slideshare.net/bluegrassdigital/veeva-irep-overview-dev-guide)
@@ -63,4 +69,4 @@ Custom CSS is written in `src/public/scss`. The entry point SCSS file is `app.sc
 ## Contact
 [ricky.grimaldi@mccann.com](mailto:ricky.grimaldi@mccann.com)
 Or
-[rick@rgdigital.io](mailto:rick@rgdigital.io) -->
+[rick@rgdigital.io](mailto:rick@rgdigital.io)

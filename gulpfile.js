@@ -16,6 +16,7 @@ const serve = require('./utils/gulp/serve');
 const createIndex = require('./utils/gulp/createIndex');
 const css = require('./utils/gulp/css');
 const js = require('./utils/gulp/js');
+const thumbnails = require('./utils/gulp/thumbnails');
 
 /* 
  * JS tasks
@@ -32,6 +33,11 @@ exports.slideCss = css.slideCss;
 exports.libsCss = css.libsCss;
 exports.sharedCss = css.sharedCss;
 exports.css = css.default;
+
+/* 
+ * Generate thumbnails
+ */
+exports.thumbnails = thumbnails.default;
 
 /* 
  * Watch + serve task
