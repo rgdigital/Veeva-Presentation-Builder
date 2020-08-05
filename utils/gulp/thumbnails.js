@@ -7,6 +7,7 @@ const tap = require('gulp-tap');
 const path = require('path');
 const puppeteer = require('puppeteer');
 const jimp = require('jimp');
+const zip = require('gulp-zip');
 const browserSync = require('browser-sync').create();
 
 const config = require('./config');

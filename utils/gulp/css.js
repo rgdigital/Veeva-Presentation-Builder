@@ -8,18 +8,14 @@ const sass = require('gulp-sass');
 sass.compiler = require('node-sass');
 const cleanCSS = require('gulp-clean-css');
 const gulpif = require('gulp-if');
-const tap = require('gulp-tap');
 
 const config = require('./config');
 const data = require('../../src/data/data.json');
 
 // Fixes missing bs error
-// let browserSync = {};
-// browserSync.stream = function(){};
 let browserSync = false;
 
 function slideCss(done) {
-    // console.log(browserSync)
     return gulp
         .src([
             config.path.src + "/slides/**/*.scss",
@@ -34,12 +30,6 @@ function slideCss(done) {
         )
         .pipe(gulp.dest(config.path.dist))
         .pipe(browserSync.stream())
-        // .pipe(gulpif(browserSync, browserSync.stream()))
-        // .pipe(browserSync && browserSync.stream())
-        // .pipe(tap(function (file, t) {
-        //     console.log(typeof browserSync)
-        //     browserSync && browserSync.stream()
-        // }))
         done()
 }
 
@@ -50,12 +40,8 @@ function libsCss(done) {
         ])
         .pipe(cleanCSS())
         .pipe(rename("libs.min.css"))
-        // .pipe(gulpif(browserSync, browserSync.stream()))
-        // .pipe(browserSync && browserSync.stream())
-        .pipe(tap(function (file, t) {
-            browserSync && browserSync.stream()
-        }))
-        .pipe(gulp.dest(config.path.dist + "/shared"));
+        .pipe(gulp.dest(config.path.dist + "/shared"))
+        .pipe(browserSync.stream())
     done()
 }
 
@@ -66,11 +52,8 @@ function sharedCss(done) {
         ])
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(rename("app.min.css"))
-        // .pipe(browserSync && browserSync.stream())
-        .pipe(tap(function (file, t) {
-            browserSync && browserSync.stream()
-        }))
-        .pipe(gulp.dest(config.path.dist + "/shared"));
+        .pipe(gulp.dest(config.path.dist + "/shared"))
+        .pipe(browserSync.stream())
     done()
 }
 

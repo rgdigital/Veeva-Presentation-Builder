@@ -50,6 +50,8 @@ exports.thumbnails = thumbnails.default;
  * Deliver files
  */
 exports.delivery = delivery.default;
+exports.clean = delivery.clean;
+exports.zip = delivery.zip;
 
 /* 
  * Watch + serve task
