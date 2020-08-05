@@ -1,1 +1,0 @@
-console.log('log for slide 01')

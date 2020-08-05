@@ -1,5 +1,6 @@
 const prompts = require('prompts');
 const fs = require('fs');
+const createIndex = require('../gulp/createIndex');
 
 const questions = [
     {
@@ -52,7 +53,9 @@ function createNewSlide(title) {
 
 (async () => {
     const response = await prompts(questions);
+    // console.log(createIndex())
     let path = createNewSlide(response.title);
+    createIndex()
     console.log('Created new slide (with JS + CSS) at: ' + path)
     // => response => { username, age, about }
 })();

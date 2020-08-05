@@ -36,4 +36,4 @@ exports.css = css.default;
 /* 
  * Watch + serve task
  */
-exports.watch = serve.default;
+exports.default = serve.default;

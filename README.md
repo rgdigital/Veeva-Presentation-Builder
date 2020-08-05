@@ -7,7 +7,7 @@
     - `npm install --save-dev gulp`
 
 ## Installation
-1. Clone the repo with  `git clone git@bitbucket.org:mccannhealthlondon/11354403_generic_ambrisentan-action_plan_janssen.git`.
+1. Clone the repo with  `git clone git@github.com:rgdigital/Veeva-Presentation-Builder.git`.
 2. Run `npm install` to install all the project dependancies.
 
 ## TODO
@@ -15,14 +15,21 @@
 - Zip up individual folders in dist
 - Generate thumbnails for each slide (using puppeteer)
 
-<!-- ## Project structure
+## Project structure
 - **/dist** - This contains the compiled project ready to host on a live server.
 - **/src** - This is the working directory. All the code + assets go in here.
+
+## Generator tasks
+
+#### `npm run newslide` - Create a new slide
+This will prompt for a slide title and create a new slide folder and its files in the `src/slides` folder. It will also add a link to the slide to the index page (first page you see when you serve the project locally).
 
 ## Gulp tasks
 
 #### `gulp` - default task
 This will open a browser window with a preview of the project. All the HTML, CSS, and JS files (apart from libraries) are being watched, so any changes you make will trigger a browser refresh to reflect the changes.
+
+<!--
 
 #### `gulp assets` - Asset copy task
 This will copy over asset files - images, fonts, icons + JSON. You will need to run this when you copy new assets into the **/src** folder as these changes aren't being watched.
