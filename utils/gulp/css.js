@@ -7,13 +7,19 @@ const rename = require("gulp-rename");
 const sass = require('gulp-sass');
 sass.compiler = require('node-sass');
 const cleanCSS = require('gulp-clean-css');
+const gulpif = require('gulp-if');
+const tap = require('gulp-tap');
 
 const config = require('./config');
 const data = require('../../src/data/data.json');
 
-let browserSync;
+// Fixes missing bs error
+// let browserSync = {};
+// browserSync.stream = function(){};
+let browserSync = false;
 
-function slideCss() {
+function slideCss(done) {
+    // console.log(browserSync)
     return gulp
         .src([
             config.path.src + "/slides/**/*.scss",
@@ -26,43 +32,54 @@ function slideCss() {
                 path.extname = ".css";
             })
         )
-        .pipe(browserSync && browserSync.stream())
-        .pipe(gulp.dest(config.path.dist));
+        .pipe(gulp.dest(config.path.dist))
+        .pipe(browserSync.stream())
+        // .pipe(gulpif(browserSync, browserSync.stream()))
+        // .pipe(browserSync && browserSync.stream())
+        // .pipe(tap(function (file, t) {
+        //     console.log(typeof browserSync)
+        //     browserSync && browserSync.stream()
+        // }))
+        done()
 }
 
-function libsCss() {
+function libsCss(done) {
     return gulp
         .src([
             config.path.src + "/shared/libs/css/**/*.css",
         ])
         .pipe(cleanCSS())
         .pipe(rename("libs.min.css"))
-        .pipe(browserSync && browserSync.stream())
+        // .pipe(gulpif(browserSync, browserSync.stream()))
+        // .pipe(browserSync && browserSync.stream())
+        .pipe(tap(function (file, t) {
+            browserSync && browserSync.stream()
+        }))
         .pipe(gulp.dest(config.path.dist + "/shared"));
+    done()
 }
 
-function sharedCss() {
+function sharedCss(done) {
     return gulp
         .src([
             config.path.src + "/shared/scss/**/*.scss",
         ])
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(rename("app.min.css"))
-        .pipe(browserSync && browserSync.stream())
+        // .pipe(browserSync && browserSync.stream())
+        .pipe(tap(function (file, t) {
+            browserSync && browserSync.stream()
+        }))
         .pipe(gulp.dest(config.path.dist + "/shared"));
+    done()
 }
 
-// module.exports.slideCss = slideCss;
-// module.exports.libsCss = libsCss;
-// module.exports.sharedCss = sharedCss;
-// module.exports.default = series(slideCss, libsCss, sharedCss);
-
-module.exports = function(bs) {
+function connect(bs, done) {
     browserSync = bs || false;
-    let modules = {};
-    modules.slideCss = slideCss;
-    modules.libsCss = libsCss;
-    modules.sharedCss = sharedCss;
-    modules.default = series(slideCss, libsCss, sharedCss);
-    return modules;
-};
+}
+
+module.exports.connect = connect;
+module.exports.slideCss = slideCss;
+module.exports.libsCss = libsCss;
+module.exports.sharedCss = sharedCss;
+module.exports.default = series(slideCss, libsCss, sharedCss);

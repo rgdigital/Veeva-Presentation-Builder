@@ -30,4 +30,4 @@ function createIndex(done) {
     done();
 }
 
-module.exports = series(getList, createIndex)
+module.exports.default = series(getList, createIndex)

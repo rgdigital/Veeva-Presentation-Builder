@@ -8,7 +8,7 @@ const browserSync = require('browser-sync').create();
  */
 const templates = require('./templates');
 const createIndex = require('./createIndex');
-const css = require('./css')(browserSync);
+const css = require('./css');
 const js = require('./js');
 
 const config = require('./config');
@@ -19,7 +19,13 @@ function reload(cb) {
     cb();
 }
 
-module.exports.default = function () {
+// Reconnect CSS tasks to browsersync for streaming
+function connect(cb) {
+    css.connect(browserSync);
+    cb();
+}
+
+function serve() {
     // initialize browsersync
     browserSync.init({
         server: {
@@ -27,9 +33,11 @@ module.exports.default = function () {
         }
     });
     // Watch HTML files 
-    watch(config.path.src + "/slides/**/*.hbs", series(templates, reload));
+    watch(config.path.src + "/slides/**/*.hbs", series(templates.default, reload));
     // Watch JS files
     watch(config.path.src + "/**/*.js", series(js.default, reload));
     // Watch CSS files (changes streamed from task)
-    watch(config.path.src + "/**/*.scss", series(css.default));
-}  
+    watch(config.path.src + "/**/*.scss", series(connect, css.default));
+}
+
+module.exports.default = series(createIndex.default, serve);

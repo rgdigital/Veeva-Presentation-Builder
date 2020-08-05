@@ -6,7 +6,7 @@ const rename = require("gulp-rename");
 const config = require('./config');
 const data = require('../../src/data/data.json');
 
-module.exports = function(cb) {
+function compileTemplates(cb) {
     const modals = {
         // pi: {
         // 	name: "pi",
@@ -42,3 +42,5 @@ module.exports = function(cb) {
         )
         .pipe(gulp.dest(config.path.dist));
 }
+
+module.exports.default = series(compileTemplates);

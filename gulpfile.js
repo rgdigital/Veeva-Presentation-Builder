@@ -17,6 +17,13 @@ const createIndex = require('./utils/gulp/createIndex');
 const css = require('./utils/gulp/css');
 const js = require('./utils/gulp/js');
 const thumbnails = require('./utils/gulp/thumbnails');
+const delivery = require('./utils/gulp/delivery');
+
+/* 
+ * Template tasks
+ */
+exports.createIndex = createIndex.default;
+exports.templates = templates.default;
 
 /* 
  * JS tasks
@@ -38,6 +45,11 @@ exports.css = css.default;
  * Generate thumbnails
  */
 exports.thumbnails = thumbnails.default;
+
+/* 
+ * Deliver files
+ */
+exports.delivery = delivery.default;
 
 /* 
  * Watch + serve task
