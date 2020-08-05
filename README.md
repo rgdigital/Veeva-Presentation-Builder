@@ -11,7 +11,7 @@
 2. Run `npm install` to install all the project dependancies.
 
 ## TODO
-- Compile handlebar templates into dist
+<!-- - Compile handlebar templates into dist -->
 - Zip up individual folders in dist
 - Generate thumbnails for each slide (using puppeteer)
 
