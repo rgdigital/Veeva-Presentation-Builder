@@ -10,13 +10,29 @@
 1. Clone the repo with  `git clone git@github.com:rgdigital/Veeva-Presentation-Builder.git`.
 2. Run `npm install` to install all the project dependancies.
 
-## TODO
-- Copy assets from src -> dist
-- Zip up individual folders in dist
-<!-- - Compile handlebar templates into dist -->
-<!-- - Generate thumbnails for each slide (using puppeteer) -->
-
 ## Project structure
+
+    .
+    ├── delivery                    # Zip files for delivery
+    ├── dist                        # Output directory for preview
+    ├── src                         # Working directory for development
+    │   ├── data                    
+    │   │   └── data.json           # Data you add here passed to all slide view files
+    │   ├── shared                  # For files shared between all files
+    │   │   ├── js
+    │   │   ├── libs                # JS / CSS libs
+    │   │   └── scss                # Generic scss
+    │   └── slides                  # The view folder
+    │       ├── _partials           # Partials for use across multiple slides
+    │       └── slide_01            # Default slide view folder
+    │           ├── images
+    │           ├── slide.js
+    │           ├── slide.scss
+    │           └── slide_01.hbs
+    ├── utils                       # Utilities used by the build system
+    ├── gulpfile.js
+    └── ...
+
 - **/dist** - This contains the compiled project ready to host on a live server.
 - **/src** - This is the working directory. All the code + assets go in here.
 
@@ -30,35 +46,8 @@ This will prompt for a slide title and create a new slide folder and its files i
 #### `gulp` - default task
 This will open a browser window with a preview of the project. All the HTML, CSS, and JS files (apart from libraries) are being watched, so any changes you make will trigger a browser refresh to reflect the changes.
 
-#### `gulp thumbnails` - Generate thumbnails
-This task will run a local server in the background, then take pictures of the slides and place the thumbnails in each slides folder in `/dist`.
-
-<!--
-
-#### `gulp assets` - Asset copy task
-This will copy over asset files - images, fonts, icons + JSON. You will need to run this when you copy new assets into the **/src** folder as these changes aren't being watched.
-
-#### `gulp jslibs` - Compile JS libraries
-This will concat and minify all the JS in the `src/public/js/libs` folder.
-
-#### `gulp csslibs` - Compile CSS libraries
-This will concat and minify all the CSS in the `src/public/css` folder.
-
-## Adding JS to pages
-
-To add JS to a page you need to -
-- Add the page ID to the body of the page 
-- Create a js file for the page in `src/public/js/pages/<pageID>.js` and add a contructor to `_Pres.Pages.<PageID>`.
-
-This will be called automatically when the user is on that page.
-
-## Adding HTML views
-Just add the HTML page in src (in a folder if you like) and it will be copied to `/dist` and preserve the same folder structure.
-
-## Adding CSS / SCSS
-Custom CSS is written in `src/public/scss`. The entry point SCSS file is `app.scss`. You can change the structure however you like as long as you include any extra .scss files in app.scss.
-
--->
+#### `gulp delivery` - Package up delivery files
+This task will package the slide`zip` files into the `/delivery` folder ready to be imported into Veeva.
 
 ## Resources
 - [Veeva CRM docs](https://developer.veevacrm.com/api/)
