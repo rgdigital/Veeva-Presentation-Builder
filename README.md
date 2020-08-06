@@ -10,6 +10,15 @@
 1. Clone the repo with  `git clone git@github.com:rgdigital/Veeva-Presentation-Builder.git`.
 2. Run `npm install` to install all the project dependancies.
 
+## Quick start
+1. Create a slide with `npm run newslide` and enter your slide name in the prompt. Your new slide will be created with assets in `src/slides/<your slide name>`.
+2. In the slide folder you can edit -
+	- `<slide name>.hbs` - View file (will be output as normal HTML)
+	- `slide.scss` - Sass file (output as normal CSS)
+	- `slide.js` - ES6 compatible js file (compiled to standards-compliant JS)
+	- `images` - add your image assets here
+3. Once you have finished, run the delivery task `gulp delivery`. This will compile all the assets into a Veeva-compatible format and zip up the assets ready for upload into Veeva.
+
 ## Project structure
 
     .
@@ -56,6 +65,4 @@ This task will package the slide`zip` files into the `/delivery` folder ready to
 - [Veeva CRM generator example project](https://github.com/devopsgroup-io/veeva/tree/master/examples/clm)
 
 ## Contact
-[ricky.grimaldi@mccann.com](mailto:ricky.grimaldi@mccann.com)
-Or
 [rick@rgdigital.io](mailto:rick@rgdigital.io)
