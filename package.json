@@ -5,9 +5,7 @@
   "main": "gulpfile.babel.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "gulp --gulpfile ./utils/gulp/index.js",
-    "newslide": "node utils/generator/newSlide.js",
-    "thumbnails": "node utils/generator/thumbnails.js"
+    "newslide": "node utils/generator/newSlide.js"
   },
   "author": "Ricky Grimaldi",
   "license": "ISC",

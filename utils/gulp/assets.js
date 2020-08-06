@@ -13,9 +13,15 @@ type.video = '.{mp4,ogv,webm}';
 type.audio = '.{wav,mp3}';
 
 function copyAssets(cb) {
-    return gulp.src([
-        config.path.src + "/slides/**/*"+type.img,
-    ])
+    // Shared assets
+    gulp.src([
+        config.path.src + "/shared/images/**/*" + type.img,
+    ], { base: config.path.src })
+        .pipe(gulp.dest(config.path.dist))
+    // Slide assets
+    gulp.src([
+        config.path.src + "/slides/**/*" + type.img,
+    ], { base: config.path.src + "/slides" })
         .pipe(gulp.dest(config.path.dist))
         cb();
 }
