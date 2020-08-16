@@ -19,6 +19,7 @@
     "gulp-clean": "^0.4.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-compile-handlebars": "^0.6.1",
+    "gulp-concat": "^2.6.1",
     "gulp-foreach": "^0.1.0",
     "gulp-hub": "^4.2.0",
     "gulp-if": "^3.0.0",
