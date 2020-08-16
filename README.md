@@ -45,6 +45,26 @@
 - **/dist** - This contains the compiled project ready to host on a live server.
 - **/src** - This is the working directory. All the code + assets go in here.
 
+## Shared resources
+
+A shared folder can contain generic resources, like JS, CSS, images, and fonts for use by each slide.
+
+The shared folder zip will be packaged with a filename from the project title in src/data.json. To add a shared resource in Veeva you need to add separately from the binder. Follow these steps -
+
+1. Click the **Library** tab.
+2. Click **Create** and select **Upload**.
+3. Upload the zip, selecting **Multichannel Slide** from the document type.
+4. Click **Edit fields**
+5. In the right-hand sidebar you need to specify:
+    - **Multichannel Properties** -> **Shared resource = Yes**
+    - **CLM Properties** -> **CLM Content = Yes**
+6. Now press **Save**.
+7. Sync in the CRM (Salesforce)
+8. Sync in the Veeva app (iPad or simulator)
+9. To check the shared zip hsa been downloaded to the Veeva app, go to **More** -> **Options** -> **Media** and you should see it at the top of the list.
+
+To add this shared resource to a slide, go to that slide in the binder and select the **+** button from the *Related Shared Resource* in the sidebar. Then find your shared resource folder and add it.
+
 ## Generator tasks
 
 #### `npm run newslide` - Create a new slide
@@ -55,8 +75,11 @@ This will prompt for a slide title and create a new slide folder and its files i
 #### `gulp` - default task
 This will open a browser window with a preview of the project. All the HTML, CSS, and JS files (apart from libraries) are being watched, so any changes you make will trigger a browser refresh to reflect the changes.
 
+#### `gulp assets` - Copy over assets to dist
+This task will copy the asset files to the `/dist` folder.
+
 #### `gulp delivery` - Package up delivery files
-This task will package the slide`zip` files into the `/delivery` folder ready to be imported into Veeva.
+This task will package the slide`.zip` files into the `/delivery` folder ready to be imported into Veeva.
 
 ## Resources
 - [Veeva CRM docs](https://developer.veevacrm.com/api/)

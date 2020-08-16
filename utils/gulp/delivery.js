@@ -35,16 +35,17 @@ function cleanDelivery(cb) {
 }
 
 function zipDelivery(cb) {
-
+    
     gulp.src([
         './dist/*',
         '!./dist/index.html',
         // '!./dist/shared',
     ])
         .pipe(foreach(function (stream, file) {
-            var fileName = file.path.substr(file.path.lastIndexOf("/") + 1).split('\\').pop();;
+            var fileName = file.path.substr(file.path.lastIndexOf("/") + 1).split('\\').pop();
+            let destFilename = fileName !== "shared" ? fileName : data.project_title.replace(/ /g, "_").toLowerCase() + "_shared";
             gulp.src("./dist/" + fileName + "/**/*")
-                .pipe(zip(fileName + ".zip"))
+                .pipe(zip(destFilename + ".zip"))
                 .pipe(gulp.dest("./delivery"));
             return stream;
         }));

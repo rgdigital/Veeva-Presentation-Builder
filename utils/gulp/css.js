@@ -41,7 +41,7 @@ function libsCss(done) {
         .pipe(cleanCSS())
         .pipe(rename("libs.min.css"))
         .pipe(gulp.dest(config.path.dist + "/shared"))
-        .pipe(browserSync.stream())
+        // .pipe(browserSync.stream())
     done()
 }
 
@@ -66,3 +66,4 @@ module.exports.slideCss = slideCss;
 module.exports.libsCss = libsCss;
 module.exports.sharedCss = sharedCss;
 module.exports.default = series(slideCss, libsCss, sharedCss);
+// module.exports.default = series(slideCss, libsCss);

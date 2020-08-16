@@ -55,7 +55,7 @@ function createNewSlide(title) {
     const response = await prompts(questions);
     // console.log(createIndex())
     let path = createNewSlide(response.title);
-    createIndex()
+    createIndex.default()
     console.log('Created new slide (with JS + CSS) at: ' + path)
     // => response => { username, age, about }
 })();

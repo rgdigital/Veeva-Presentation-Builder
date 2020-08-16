@@ -16,6 +16,7 @@ function copyAssets(cb) {
     // Shared assets
     gulp.src([
         config.path.src + "/shared/images/**/*" + type.img,
+        config.path.src + "/shared/fonts/**/*" + type.font,
     ], { base: config.path.src })
         .pipe(gulp.dest(config.path.dist))
     // Slide assets

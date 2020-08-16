@@ -51,23 +51,24 @@ function createThumbnails(done) {
 
                 await page.goto('http://localhost:' + port + '/' + folder, { waitUntill: "networkidle2" });
                 await page.waitFor(4300);
-                await page.screenshot({ path: 'dist/' + folder+'/thumbnail.png' });
+                await page.screenshot({ path: 'dist/' + folder +'/thumb.png' });
                 await browser.close();
                 browserSync.cleanup();
 
-                jimp.read('dist/' + folder + '/thumbnail.png')
-                    .then(lenna => {
-                        return lenna
+                await jimp.read('dist/' + folder + '/thumb.png')
+                    .then(img => {
+                        return img
                             .resize(200, 143)
                             .quality(60)
-                            .write('dist/' + folder + '/thumbnail.png');
+                            .write('dist/' + folder + '/thumb.png');
                     })
                     .catch(err => {
                         console.error(err);
                     });
+                done();
             })();
         }))
-    done();
+        // .on('end', done)
 }
 
 module.exports.default = series(startServer, createThumbnails);
